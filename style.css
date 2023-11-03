@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background: linear-gradient(320deg, #7C84F3, #FF4DD2, #FF993B, #FF4DD2, #7C84F3, #FF4DD2, #FF993B);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-size: 400% 400%;
+    animation: gradientAnimation 20s linear infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    25% {
+        background-position: 100% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    75% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    border-radius: 5px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo span {
+    font-size: 25px;
+    font-weight: bold;
+    color: #333333;
+    cursor: pointer;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.menu ul {
+    display: flex;
+    width: 100%;
+}
+
+.menu ul li {
+    list-style: none;
+    margin-right: 20px;
+}
+
+.menu ul li:last-child {
+    margin-right: 0;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+    cursor: pointer;
+}
+
+.menu_button {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .header {
+        padding: 10px;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+    }
+
+    .menu_button {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        cursor: pointer;
+    }
+
+    .logo span {
+        font-size: 22px;
+    }
+
+    .menu_button span {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: #333333;
+    }
+
+    .menu {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.5);
+        z-index: 999;
+        padding: 10px 20px;
+        animation: slideInFromRight 0.5s ease forwards;
+    }
+
+    @keyframes slideInFromRight {
+        0% {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .menu ul {
+        flex-direction: column;
+    }
+
+    .menu ul li {
+        list-style: none;
+        margin: 15px 0;
+    }
+}
