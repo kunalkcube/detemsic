@@ -368,3 +368,79 @@ body {
     font-weight: 600;
     color: #333333;
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 95%;
+    max-width: 400px;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ebebeb;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#apiKeyInput {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#apiKeySubmit {
+    background: linear-gradient(320deg, #7C84F3, #FF4DD2, #FF993B, #FF4DD2, #7C84F3, #FF4DD2, #FF993B);
+    background-size: 600% 600%;
+    animation: gradientAnimation 20s linear infinite;
+    color: #f8f8f8;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#apiKeyModal p {
+    font-size: 14px;
+    color: #333333;
+    margin-top: 15px;
+}
+
+#apiKeyModal p a {
+    text-decoration: none;
+    color: #FF4DD2;
+}
+
+#apiKeyModal p a i {
+    font-size: 18px;
+    font-weight: 600;
+}
