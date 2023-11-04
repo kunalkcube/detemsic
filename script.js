@@ -35,13 +35,64 @@ document.addEventListener('DOMContentLoaded', function () {
                     const track = data.tracks.hits[0].track;
                     resultsSection.innerHTML = `
                     <h2>${track.title}</h2>
-                    <span>${track.subtitle}</span>
+                    <span class="artist">${track.subtitle}</span>
                     <div class="image">
                         <img src="${track.images.coverart}" alt="${track.title} cover">
                     </div>
-                    <a href="${track.hub.actions[1].uri}" download><i class="ri-download-cloud-line"></i></a>
+                    <div class="music_player">
+                        <audio id="audio" src="${track.hub.actions[1].uri}"></audio>
+                        <div class="progress_container">
+                            <div id="progress_bar" class="progress_bar"></div>
+                        </div>
+                        <div class="song_time">
+                            <span id="current_time">0:00</span>
+                            <span id="total_time">0:00</span>
+                        </div>
+                        <div class="player_controls">
+                            <button id="play_pause_button" class="play"><i class="ri-play-line"></i></button>
+                            <a href="${track.hub.actions[1].uri}" download><i class="ri-download-cloud-line"></i></a>
+                        </div>
+                    </div>
                 `;
                     resultsSection.style.display = 'flex';
+
+                    // Audio player control logic
+                    const audio = document.getElementById("audio");
+                    const playPauseButton = document.getElementById("play_pause_button");
+                    const playPauseButtonIcon = document.querySelector("#play_pause_button i");
+                    const progressBar = document.getElementById("progress_bar");
+                    const currentTimeDisplay = document.getElementById("current_time");
+                    const totalTimeDisplay = document.getElementById("total_time");
+
+                    playPauseButton.addEventListener("click", function () {
+                        if (audio.paused) {
+                            audio.play();
+                            playPauseButtonIcon.classList.remove('ri-play-line');
+                            playPauseButtonIcon.classList.add('ri-pause-line');
+                        } else {
+                            audio.pause();
+                            playPauseButtonIcon.classList.remove('ri-pause-line');
+                            playPauseButtonIcon.classList.add('ri-play-line');
+                        }
+                    });
+
+                    audio.addEventListener("timeupdate", function () {
+                        const currentTime = audio.currentTime;
+                        const duration = audio.duration;
+                        const progress = (currentTime / duration) * 100;
+                        progressBar.style.width = progress + "%";
+
+                        // Update current time and total time display
+                        currentTimeDisplay.textContent = formatTime(currentTime);
+                        totalTimeDisplay.textContent = formatTime(duration);
+                    });
+
+                    // Format time in minutes and seconds
+                    function formatTime(time) {
+                        const minutes = Math.floor(time / 60);
+                        const seconds = Math.floor(time % 60);
+                        return `${minutes}:${(seconds < 10 ? "0" : "")}${seconds}`;
+                    }
                 })
                 .catch((error) => {
                     console.error(error);

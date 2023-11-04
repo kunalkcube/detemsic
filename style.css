@@ -262,7 +262,7 @@ body {
     color: #333333;
 }
 
-.results_section span {
+.artist {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 20px;
@@ -276,7 +276,6 @@ body {
     overflow: hidden;
     width: 100%;
     height: auto;
-    margin-bottom: 25px;
     border-radius: 5px;
 }
 
@@ -286,11 +285,11 @@ body {
     object-fit: cover;
 }
 
-.results_section a {
+.player_controls a {
     text-decoration: none;
     font-size: 22px;
     font-weight: 600;
-    padding: 15px 20px;
+    padding: 10px 15px;
     border-radius: 5px;
     background: linear-gradient(320deg, #7C84F3, #FF4DD2, #FF993B, #FF4DD2, #7C84F3, #FF4DD2, #FF993B);
     background-size: 600% 600%;
@@ -299,4 +298,73 @@ body {
     justify-content: center;
     align-items: center;
     color: #f8f8f8;
+}
+
+.music_player {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player_controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+#play_pause_button {
+    padding: 10px 15px;
+    background: linear-gradient(320deg, #7C84F3, #FF4DD2, #FF993B, #FF4DD2, #7C84F3, #FF4DD2, #FF993B);
+    background-size: 800% 800%;
+    animation: gradientAnimation 20s linear infinite;
+    color: #f8f8f8;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#play_pause_button i {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.progress_container {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid #ff6cf5;
+    background-color: #ff6df524;
+}
+
+.progress_bar {
+    background: linear-gradient(320deg, #7C84F3, #FF4DD2, #FF993B, #FF4DD2, #7C84F3, #FF4DD2, #FF993B);
+    background-size: 600% 600%;
+    animation: gradientAnimation 20s linear infinite;
+    height: 15px;
+}
+
+.song_time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+#current_time,
+#total_time {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
 }
