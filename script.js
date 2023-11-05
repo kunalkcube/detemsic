@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
     searchButton.addEventListener('click', function () {
         const query = searchInput.value.trim();
         if (query !== '') {
+            searchButton.textContent = "Searching";
             // Construct the Shazam API URL with the user's query
             const apiUrl = `https://shazam.p.rapidapi.com/search?term=${encodeURIComponent(query)}`;
             const apiKey = localStorage.getItem('apiKey'); // Retrieve the API key from localStorage
@@ -91,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                     `;
                         resultsSection.style.display = 'flex';
+                        searchButton.textContent = "Search";
 
                         // Audio player control logic
                         const audio = document.getElementById("audio");
@@ -133,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     .catch((error) => {
                         console.error(error);
                         resultsSection.innerHTML = 'Error occurred while searching for music.';
+                        searchButton.textContent = "Search";
                     });
             }
         }
@@ -141,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Microphone functionality
     const micButton = document.getElementById('mic_button');
     const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+    let isListening = false;
 
     recognition.onresult = function (event) {
         const transcript = event.results[0][0].transcript;
@@ -149,10 +153,13 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     micButton.addEventListener('click', function () {
-        recognition.start();
+        if (isListening) {
+            recognition.stop();
+            micButton.textContent = "Search via Mic";
+        } else {
+            recognition.start();
+            micButton.textContent = "Listening";
+        }
+        isListening = !isListening;
     });
-
-    recognition.onend = function () {
-        recognition.start();
-    };
 });
